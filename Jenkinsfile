@@ -20,6 +20,7 @@ pipeline {
 
   environment {
     BUILD_NUMBER = "${env.BUILD_ID}"
+    SonarQubeTokenAcc = "sonarqube-secret-text-java-project"
     //eagunu docker registry repository
     registry = "danle360/us-argocd-java-web-application"
     //eagunu dockerhub registry
@@ -37,6 +38,7 @@ pipeline {
     NEXUS_REPOSITORY = "us-argocd-java-web-application"
     // Jenkins credential id to authenticate to Nexus OSS
     NEXUS_CREDENTIAL_ID = "nexus-username-password-creds"
+    //sonar qube
   }
 
   stages {
@@ -61,7 +63,7 @@ pipeline {
 
    stage ('SonarQube Plugin Report') {
        steps {
-         withSonarQubeEnv(credentialsId: 'sonarqube-secret-text-java-project') {
+         withSonarQubeEnv(credentialsId: 'SonarQubeTokenAcc') {
            sh "mvn clean package sonar:sonar"
          }
         }
