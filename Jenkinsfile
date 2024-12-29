@@ -61,20 +61,20 @@ pipeline {
     // }
     //  }
 
-   stage ('SonarQube Plugin Report') {
-       steps {
-         withSonarQubeEnv(credentialsId: 'SonarQubeTokenAcc') {
-           sh "mvn clean package sonar:sonar"
-         }
-        }
-      }
-  // stage ('SonarQube Plugin Report') {
+  //  stage ('SonarQube Plugin Report') {
   //      steps {
-  //        withSonarQubeEnv('SonarQubeAccessToken') {
-  //        sh "mvn clean package sonar:sonar"
-  //         }
+  //        withSonarQubeEnv(credentialsId: 'SonarQubeTokenAcc') {
+  //          sh "mvn clean package sonar:sonar"
+  //        }
   //       }
   //     }
+  stage ('SonarQube Plugin Report') {
+       steps {
+         withSonarQubeEnv('SonarQubeTokenAcc') {
+         sh "mvn clean package sonar:sonar"
+          }
+        }
+      }
 
       stage("publish to nexus") {
           steps {
