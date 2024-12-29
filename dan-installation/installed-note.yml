@@ -1,0 +1,432 @@
+region: us-central1-a
+us-east1-b
+us-east1-b
+export CLUSTER_NAME=demo
+export CLUSTER_ZONE=us-east1-b
+#gcloud auth login
+n1-standard-1 $0.03325 hourly
+n1-standard-2
+n1-standard-4
+n1-standard-8
+
+setx myvariable myvariablevalue
+
+export CLUSTER_ZONE=us-east1-b
+export CLUSTER_NAME=prod-us-demo
+#gcloud container clusters create --machine-type n1-standard-8 prod-gke-demo --zone $CLUSTER_ZONE --num-nodes 4 --min-nodes 4 --max-nodes 5
+
+#worked 11-11-2024
+gcloud container clusters create --machine-type n1-standard-4 --num-nodes 2 --zone us-east1-b --cluster-version latest prod-us-demo
+
+export CLUSTER_ZONE=us-east1-b
+export CLUSTER_NAME=prod-us-demo
+gcloud container clusters get-credentials $CLUSTER_NAME --zone $CLUSTER_ZONE --project eagunu2025-441216
+
+gcloud container clusters delete $CLUSTER_NAME --zone $CLUSTER_ZONE
+gcloud container clusters delete prod-gke-demo  --zone us-east1-b
+
+https://cloud.google.com/sdk/docs/install#linux  #gcloud CLI
+https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl#gcloud_1
+#gcloud container clusters create --machine-type n1-standard-4 --num-nodes 4 --zone $CLUSTER_ZONE --additional-zones us-central1-b,us-central1-c --cluster-version latest mydemo
+
+
+gcloud container clusters create --machine-type n1-standard-8 --num-nodes 2 --zone us-central1-a  --cluster-version latest demo-cluster
+
+#firewale rules
+https://cloud.google.com/sdk/gcloud/reference/compute/firewall-rules/create
+
+gcloud container clusters create example-cluster \
+    --zone us-central1-a \
+    --additional-zones us-central1-b,us-central1-c
+#This failed
+gcloud container clusters create \
+  --machine-type n1-standard-2 \
+  --num-nodes 2 \
+  --zone us-central1-a \
+  --additional-zones us-central1-b,us-central1-c \
+  --cluster-version latest \
+  demo-cluster
+
+kubectl create clusterrolebinding cluster-admin-binding \
+  --clusterrole=cluster-admin \
+  --user=<GOOGLE-EMAIL-ACCOUNT>
+#This worked last updated
+gcloud container clusters create --machine-type n1-standard-2 --num-nodes 2 --node-locations  us-central1-a --additional-zones us-central1-b,us-central1-c --cluster-version latest mydemo
+#Update the kubectl configuration to use the plugin:
+https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl#install_plugin
+gcloud container clusters get-credentials demo-cluster --region us-central1-a
+gcloud container clusters delete demo-cluster --zone us-central1-a
+# gcloud container clusters create $CLUSTER_NAME --image-type COS --num-nodes 1 --machine-type n1-standard-1 --zone $CLUSTER_ZONE
+# gcloud container clusters create cka --image-type COS --num-nodes 2 --machine-type n1-standard-1 --zone us-east1-b
+# working by the end of december 2022
+
+
+       Sonarqube installation
+https://www.sonarqube.org/downloads/
+https://docs.sonarqube.org/8.9/requirements/requirements/
+yum install java-17-openjdk-devel -y
+#https://www.coachdevops.com/2020/04/how-to-integrate-sonarqube-with-jenkins.html
+
+https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.9.2.77730.zip
+##########Mithun committed ######
+cd /opt
+yum install wget unzip -y
+#wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-7.8.zip
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-8.9.8.54436.zip
+     https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-8.9.10.61524.zip
+     https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.9.5.90363.zip
+sudo wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.9.7.96285.zip
+
+unzip sonarqube-7.8.zip
+#########################
+#pwd eagunu
+cd /opt
+yum install wget unzip -y
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-8.9.7.52159.zip
+
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-8.9.8.54436.zip
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.5.0.56709.zip
+
+unzip sonarqube-8.9.7.52159.zip
+mv
+#As a good security practice, SonarQuber Server is not advised to run sonar service as a root user, so create a new user called nexus and grant sudo access to manage nexus services as follows.
+useradd sonar-2025
+Give the sudo access to sonar user
+visudo
+sonar-2025   ALL=(ALL)     NOPASSWD: ALL
+cd
+##########
+Change the owner and group permissions to /opt/sonarqube-7.8/ directory.
+chown -R sonar-2025:sonar-2025 /opt/sonar-demo/
+chmod -R 775 /opt/sonar-demo/
+su - sonar-2025
+cd /opt/sonar-demo/bin/linux-x86-64/
+./sonar.sh start
+sh sonar.sh start
+sh sonar.sh status
+sh sonar.sh stop
+################################
+yum install java-11-openjdk-devel
+java -version
+cd /opt
+yum install wget unzip -y
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-8.9.8.54436.zip
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.5.0.56709.zip
+unzip sonarqube-8.9.8.54436.zip
+
+mv sonarqube-8.9.8.54436 sonarqube
+useradd sonar
+visudo
+sonardemo   ALL=(ALL)       NOPASSWD: ALL
+chown -R sonardemo :sonardemo  sonardemo
+chmod -R 775 sonarqube
+su - eagunuworld
+# Change the owner and group permissions to /opt/sonarqube/ directory.
+# chown -R sonar:sonar /opt/sonarqube/
+# chmod -R 775 /opt/sonarqube/
+# su - sonar
+# cd /opt/sonarqube/bin/linux-x86-64/
+#
+# ./sonar.sh start
+#########aftert switching to sonar user
+cd /opt/sonarqube
+cd bin/
+cd linux-x86-64/
+./sonar.sh status
+./sonar.sh start
+./sonar.sh status
+#Hardware Requirements for SonarQube
+#----------------------------------------------------
+#The SonarQube server requires at least 2GB of RAM to run efficiently and 1GB of free RAM for the OS.
+
+#Login as a root user.
+sudo su -
+
+#Download the SonarqQube Server software.
+cd /opt
+yum install wget unzip -y
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-7.8.zip
+unzip sonarqube-7.8.zip
+
+
+#As a good security practice, SonarQuber Server is not advised to run sonar service as a root user, so create a new user called nexus and grant sudo access to manage nexus services as follows.
+useradd sonar
+
+Give the sudo access to sonar user
+visudo
+
+sonar   ALL=(ALL)       NOPASSWD: ALL
+
+Change the owner and group permissions to /opt/sonarqube-7.8/ directory.
+chown -R sonar:sonar /opt/sonarqube-7.8/
+chmod -R 775 /opt/sonarqube-7.8/
+su - sonar
+cd /opt/sonarqube-7.8/bin/linux-x86-64/
+
+./sonar.sh start
+
+Troubleshooting
+--------------------
+
+sonar service is not starting?
+
+a)make sure you need to change the ownership and group to /opt/sonarqube-7.6/ directory for sonar user.
+b)make sure you are trying to start sonar service with sonar user.
+c)check java is installed or not using java -version command.
+
+Unable to access SonarQube server URL in browser?
+
+a)make sure port 9000 is opened in security groups - AWS ec2 instance.
+
+Create SonarQube server as a sonar service
+--------------------------------------------------------
+
+ln /opt/sonarqube-7.8/bin/linux-x86-64/sonar.sh /etc/init.d/sonar
+
+vi /etc/init.d/sonar
+
+#add below lines in /etc/init.d/sonar
+
+SONAR_HOME=/opt/sonarqube-7.8
+PLATFORM=linux-x86-64
+
+WRAPPER_CMD="${SONAR_HOME}/bin/${PLATFORM}/wrapper"
+WRAPPER_CONF="${SONAR_HOME}/conf/wrapper.conf"
+PIDDIR="/opt/sonarqube-7.8/"
+
+#Enable the sonar service
+sudo systemctl enable sonar
+
+#Start the sonar service
+sudo systemctl start sonar
+
+#Check the status of the  sonar service
+sudo systemctl status sonar
+
+#New youTube
+#https://www.youtube.com/watch?v=oRac6bji5OY
+#https://www.youtube.com/watch?v=tbr_PeAGdfo
+#https://www.youtube.com/watch?v=ZAfMauwNFuQ
+
+sysctl -w vm.max_map_count=524288
+sysctl -w fs.file-max=131072
+ulimit -n 131072
+ulimit -u 8192
+https://docs.sonarqube.org/latest/requirements/requirements/
+#login
+user: admin
+pwd: admin
+
+version: "3.3"
+services:
+  db:
+    image: postgres:12-alpine
+    environment:
+      - POSTGRES_USER=sonar
+      - POSTGRES_PASSWORD=sonar
+      - POSTGRES_DB=sonar
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - sonarqube-net
+
+  sonarqube:
+    image: sonarqube:community
+    depends_on:
+      - db
+    environment:
+      - sonar.jdbc.username=sonar
+      - sonar.jdbc.url=jdbc:postgresql://db/sonar
+      - sonar.jdbc.password=sonar
+    ports:
+      - 9000:9000
+    volumes:
+      - sonar_conf:/opt/sonarqube/conf
+      - sonar_data:/opt/sonarqube/data
+      - sonar_extensions:/opt/sonarqube/extensions
+      - sonar_plugins:/opt/sonarqube/lib/bundled-plugins
+    networks:
+      - sonarqube-net
+networks:
+  sonarqube-net:
+volumes:
+  sonar_conf:
+  sonar_data:
+  sonar_extensions:
+  sonar_plugins:
+  postgres_data:
+
+
+                #Nexus installation
+#############################
+#java 11
+yum update -y
+yum install java-11-openjdk-devel -y
+java --version
+update-alternatives --config java
+#################################
+cd /opt
+yum install tar wget -y
+wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.rpm
+yum install jdk-8u131-linux-x64.rpm -y
+
+java -version
+##############################
+Nexus OSS
+Nexus Pro
+################
+Default: pwd
+userName: admin
+pwd: admin123
+##Login as a root user
+sudo su -
+
+##Change dir to /opt
+#java 8
+cd /opt
+yum install wget tar -y
+sudo wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.rpm
+yum install jdk-8u131-linux-x64.rpm -y
+java -version
+#As a good security practice, Nexus is not advised to run nexus service as a root user,
+# so create a new user called nexus and grant sudo access to manage nexus services as follows.
+#Give the sudo access to nexus user
+Login as a root user
+sudo su -
+cd /opt
+yum install wget tar  -y
+wget https://download.sonatype.com/nexus/3/nexus-3.36.0-01-unix.tar.gz
+
+https://download.sonatype.com/nexus/3/nexus-3.38.1-01-unix.tar.gz
+
+# wget https://download.sonatype.com/nexus/3/nexus-3.37.3-02-unix.tar.gz
+# wget https://download.sonatype.com/nexus/3/nexus-3.38.0-01-unix.tar.gz
+# wget https://download.sonatype.com/nexus/3/latest-unix.tar.gz
+wget https://download.sonatype.com/nexus/3/nexus-3.44.0-01-unix.tar.gz
+tar -zxvf nexus-3.37.3-02-unix.tar.gz
+mv nexus-3.37.3-02 nexus
+#As a good security practice, Nexus is not advised to run nexus service as a root user, so create a new user called nexus and grant sudo access to manage nexus services as follows.
+useradd nexus
+#Give the sudo access to nexus user
+visudo
+nexus   ALL=(ALL)     NOPASSWD: ALL
+nexus ALL=(ALL) NOPASSWD: ALL
+#Change the owner and group permissions to /opt/nexus
+#and /opt/sonatype-work directories.
+chown -R nexus:nexus /opt/nexus
+chown -R nexus:nexus /opt/sonatype-work
+chmod -R 775 /opt/nexus
+chmod -R 775 /opt/sonatype-work
+#Open /opt/nexus/bin/nexus.rc file and  uncomment run_as_user parameter and set as nexus user.
+vi /opt/nexus/bin/nexus.rc
+run_as_user="nexus"
+#Create nexus as a service
+#From bin directories create soft link
+#/opt/nexus/bin
+ln -s /opt/nexus/bin/nexus /etc/init.d/nexus
+#Create a nexus systemd unit file.
+sudo vi /etc/systemd/system/nexus.service
+[Unit]
+Description=nexus service
+After=network.target
+
+[Service]
+Type=forking
+LimitNOFILE=65536
+User=nexus
+Group=nexus
+ExecStart=/opt/nexus/nexus-3/bin/nexus start
+ExecStop=/opt/nexus/nexus-3/bin/nexus stop
+User=nexus
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
+#Switch as a nexus user and start the nexus service as follows.
+echo "run_as_user=\"nexus\"" >> /opt/nexus/nexus-2025/bin/nexus.rc
+sudo su - nexus
+#Enable the nexus services
+sudo systemctl enable nexus
+sudo systemctl start nexus
+sudo systemctl status nexus
+#####################
+https://devopscube.com/how-to-install-latest-sonatype-nexus-3-on-linux/
+https://help.sonatype.com/repomanager3/product-information/download
+###################
+#Access the Nexus server from Laptop/Desktop browser.
+http://IPAddess/Hostname:8081/
+#Default Credentials
+/opt/sonatype-work/nexus3/admin.password
+User Name: admin
+Password: nexus
+Troubleshooting
+---------------------
+nexus service is not starting?
+a)make sure need to change the ownership and group to /opt/nexus and /opt/sonatype-work directories and permissions (775) for nexus user.
+b)make sure you are trying to start nexus service with nexus user.
+c)check java is installed or not using java -version command.
+d) check the nexus.log file which is availabe in  /opt/sonatype-work/nexus3/log  directory.
+Unable to access nexus URL?
+-------------------------------------
+a)make sure port 8081 is opened in security groups in AWS ec2 instance.
+############################
+    1  cd /opt
+    2  yum install tar wget -y
+    3  clear
+    4  wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.rpm
+    5  yum install jdk-8u131-linux-x64.rpm -y
+    6  java -version
+    7  clear
+wget wget https://download.sonatype.com/nexus/3/nexus-3.38.0-01-unix.tar.gz
+    9  ls
+   10  clear
+   11  ls -lart
+   12  tar -zxvf nexus-3.38.0-01-unix.tar.gz
+   13  clear
+   14  ls
+   15  mv nexus-3.38.0-01 nexus
+   16  clear
+   17  ls -lart
+   18  useradd nexus
+   19  visudo
+   nexus ALL=(ALL)  NOPASSWD: ALL
+chown -R nexus:nexus /opt/nexus
+chown -R nexus:nexus /opt/sonatype-work
+chmod -R 775 /opt/nexus
+chmod -R 775 /opt/sonatype-work
+   24  vi /opt/nexus/bin/nexus.rc
+   25  ln -s /opt/nexus-3-38/bin/nexus /etc/init.d/nexus
+   26  sudo su - nexus-3-38
+   27  history
+[nexus@nexus-01 ~]$ history
+    1  sudo systemctl enable nexus
+    2  sudo systemctl start nexus
+    3  sudo systemctl status nexus
+
+
+ #Jenkins nodes
+sudo mkdir prod_show_workingDir
+sudo chmod -R 777 prod_show_workingDir
+cd prod_show_workingDir/
+pwd
+
+ssh-keygen
+cat ~/.ssh/id_rsa.pub
+cat ~/.ssh/id_rsa
+cat ~/.ssh/id_rsa.pub
+sudo vi ~/.ssh/authorized_keys
+
+
+sudo yum install git -y
+sudo dnf -y install dnf-plugins-core
+sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
+sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo systemctl enable --now docker
+sudo chmod 777 /var/run/docker.sock
+docker images
+
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+kubectl version --client

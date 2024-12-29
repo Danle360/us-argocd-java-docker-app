@@ -1,0 +1,72 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ibm-ucd
+# # preferredDuringSchedulingIgnoredDuringExecution(Soft Rule)
+# #This is preferred rules or soft rule, pod can be scduled even if the key are values does match
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mss-java-pod
+  namespace: ibm-ucd
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mss-java-svc
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 60
+  template:
+    metadata:
+      name: mss-java-svc
+      labels:
+        app: mss-java-svc
+    spec:
+      affinity:
+        nodeAffinity:
+         preferredDuringSchedulingIgnoredDuringExecution:
+         - weight: 1
+           preference:
+            matchExpressions:
+            - key: key    #"name"#
+              operator: In
+              values:
+              - mpm
+      containers:
+      - name: mss-java-con
+        image: image_version_update
+        ports:
+        - containerPort: 8080
+        # readinessProbe:
+        #   httpGet:
+        #     path: /mss-us-east-2-web-prod
+        #     port: 8080
+        #   initialDelaySeconds: 5
+        #   timeoutSeconds: 1
+        #   periodSeconds: 15
+        # livenessProbe:
+        #   httpGet:
+        #     path: /mss-us-east-2-web-prod
+        #     port: 8080
+        #   initialDelaySeconds: 15
+        #   timeoutSeconds: 1
+        #   periodSeconds: 15
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mss-java-svc
+  namespace: ibm-ucd
+spec:
+  type: ClusterIP
+  selector:
+    app: mss-java-svc
+  ports:
+  - port: 80
+    targetPort: 8080

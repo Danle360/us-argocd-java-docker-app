@@ -1,0 +1,48 @@
+#Install the gcloud CLI
+https://cloud.google.com/sdk/docs/install#rpm
+
+#gKE INSTALLATIONS
+n1-standard-1 $0.03325 hourly
+n1-standard-2
+n1-standard-4
+n1-standard-8
+export CLUSTER_ZONE=us-east1-b
+export CLUSTER_NAME=prod-us-demo
+echo $CLUSTER_NAME
+echo $CLUSTER_ZONE
+gcloud container clusters create --machine-type n1-standard-4 --num-nodes 2 --zone $CLUSTER_ZONE --cluster-version latest $CLUSTER_NAME
+
+gcloud container clusters create --machine-type n1-standard-4 --num-nodes 2 --zone us-east1-b --cluster-version latest prod-us-demo
+
+
+#https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl#install_plugin
+#Get gke credentials after installations
+gcloud components install gke-gcloud-auth-plugin
+
+export CLUSTER_ZONE=us-east1-b
+export CLUSTER_NAME=prod-us-demo
+echo $CLUSTER_NAME
+echo $CLUSTER_ZONE
+gcloud container clusters get-credentials $CLUSTER_NAME --zone $CLUSTER_ZONE
+
+gcloud container clusters get-credentials prod-us-demo --zone us-east1-b
+
+#Delete resources when done
+export CLUSTER_ZONE=us-east1-b
+export CLUSTER_NAME=prod-us-demo
+echo $CLUSTER_NAME
+echo $CLUSTER_ZONE
+gcloud container clusters delete $CLUSTER_NAME  --zone $CLUSTER_ZONE
+
+gcloud container clusters delete prod-us-demo  --zone us-east1-b
+
+#Create vm machines
+https://cloud.google.com/sdk/gcloud/reference/compute/instances/create
+#Redhat
+n1-standard-1 $0.03325 hourly
+n1-standard-2
+n1-standard-4
+n1-standard-8
+gcloud compute instances create jenkins-slave --machine-type n1-standard-2 --image-family=rhel-9 --image-project=rhel-cloud --zone=us-east1-b --tags dan-fire-wall
+gcloud compute instances create sonar-vm --machine-type n1-standard-1 --image-family=rhel-9 --image-project=rhel-cloud --zone=us-east1-b --tags dan-fire-wall
+gcloud compute instances create nexus-vm --machine-type n1-standard-1 --image-family=rhel-9 --image-project=rhel-cloud --zone=us-east1-b --tags dan-fire-wall
