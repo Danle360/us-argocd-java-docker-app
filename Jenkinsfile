@@ -43,7 +43,7 @@ pipeline {
     stage('Cloning Git') {
             steps {
             //git branch: 'prod-master', credentialsId: 'democalculus-github-login-creds', url: 'https://github.com/Danle360/us-argocd-java-docker-app.git'
-             git credentialsId: 'GIT_CREDENTIALS', url:  'https://github.com/Danle360/us-argocd-java-docker-app.git',branch: 'master'
+             git credentialsId: 'GIT_CREDENTIALS', url:  'https://github.com/Danle360/us-argocd-java-docker-app.git',branch: 'dan-snow-2025'
           }
         }
 
