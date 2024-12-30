@@ -70,8 +70,8 @@ pipeline {
   //     }
   stage ('SonarQube Plugin Report') {
        steps {
-         withSonarQubeEnv('SonarQubeTokenAcc') {
-         sh "mvn clean package sonar:sonar"
+         withSonarQubeEnv('SonarQubeAccessToken') {
+         sh "mvn sonar:sonar"
           }
         }
       }
