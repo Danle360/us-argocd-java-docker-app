@@ -19,7 +19,7 @@ if [[ $? -ne 0 ]]; then
     echo "mss pod Dployment ${mss_pod_app} doesn't exist,Appying kubectl commands"
     kubectl -n ibm-ucd apply -f java_web_manifestFile.yml
 else
-echo "Deploying latest version,older version is up and running"
+echo "Deploying latest version while older version is up and running"
  kubectl -n ibm-ucd apply -f java_web_manifestFile.yml
  #kubectl -n ibm-ucd rollout undo deploy ${mss_pod_app}
  #echo "Deployment ${mss_pod_app} Rollout is Success"
