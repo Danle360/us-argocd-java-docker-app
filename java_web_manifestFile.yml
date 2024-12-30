@@ -64,7 +64,7 @@ metadata:
   name: mss-java-svc
   namespace: ibm-ucd
 spec:
-  type: ClusterIP
+  type: LoadBalancer  # ClusterIP
   selector:
     app: mss-java-svc
   ports:
