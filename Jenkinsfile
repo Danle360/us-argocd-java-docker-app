@@ -20,7 +20,6 @@ pipeline {
 
   environment {
     BUILD_NUMBER = "${env.BUILD_ID}"
-    SonarQubeTokenAcc = "sonarqube-secret-text-java-project"
     //eagunu docker registry repository
     registry = "danle360/us-argocd-java-web-application"
     //eagunu dockerhub registry
@@ -71,7 +70,7 @@ pipeline {
   stage ('SonarQube Plugin Report') {
        steps {
          withSonarQubeEnv('SonarQubeAccessToken') {
-         sh "mvn sonar:sonar"
+         sh "mvn clean package sonar:sonar"
           }
         }
       }
