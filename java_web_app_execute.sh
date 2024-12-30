@@ -5,9 +5,7 @@ mss_pod_app="mss-java-pod"
 mss_con_app="mss-java-con"
 serviceName="mss-java-svc"
 #imageName="eagunuworld/numeric-app:docker pull eagunuworld/numeric-app:ddba18bd401f3eeb0ee097eb56dd8f76d1953e0b"
-imageName="eagunuworld/argocd-java-web-application:v$BUILD_NUMBER"
-#applicationURL="http://devsecops-demo.eastus.cloudapp.azure.com/"
-#applicationURI="/increment/99"
+imageName="danle360/us-argocd-java-web-application:v$BUILD_NUMBER"
 
 #sed -i "s#replace#${imageName}#g" k8s_deployment_service.yaml
 echo $mss_pod_app
