@@ -14,7 +14,7 @@ public class HelloWorldService {
 
 		logger.debug("getDesc() is executed!");
 
-		return "Maven + Java + Jenkins + Docker And Kubernetes";
+		return "Daddy And Mummy And Emmauel And Vanessa From Garen";
 
 	}
 
@@ -23,7 +23,7 @@ public class HelloWorldService {
 		logger.debug("getTitle() is executed! $name : {}", name);
 
 		if(StringUtils.isEmpty(name)){
-			return "Eghosa Aighegbe Agunu";
+			return "Oghenegaren Aighegbe Agunu";
 		}else{
 			return "Hello " + name;
 		}
