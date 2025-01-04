@@ -14,7 +14,7 @@ public class HelloWorldService {
 
 		logger.debug("getDesc() is executed!");
 
-		return "I Am Making Progress Doing Devops Software";
+		return "I Am Making Progress In My Devops Software Enginering Trainning";
 
 	}
 
@@ -23,7 +23,7 @@ public class HelloWorldService {
 		logger.debug("getTitle() is executed! $name : {}", name);
 
 		if(StringUtils.isEmpty(name)){
-			return "Dan DevOps 2025 January";
+			return "Daniel Overo DevOps 2025 January";
 		}else{
 			return "Hello " + name;
 		}
