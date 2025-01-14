@@ -3,7 +3,7 @@
 
 pipeline {
 
-  agent { label 'google-jenkins-slave' }
+  agent { label 'lave-node' }
 
   options {
        buildDiscarder logRotator(
