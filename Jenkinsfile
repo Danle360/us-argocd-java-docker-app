@@ -3,7 +3,7 @@
 
 pipeline {
 
-  agent { label 'lave-node' }
+  agent { label 'slave-node' }
 
   options {
        buildDiscarder logRotator(
